@@ -1,0 +1,671 @@
+1)Define a class University having instance variable uname, ucity and tot_stud.
+Define getUni() method to initialize instance variable. Define derived class
+Department having instance variable deptno and deptname. Define getDept()
+method to initialize instance variable. Also define display() method to display all
+information. Create two objects and demonstrate.
+
+import java.util.Scanner;
+
+class University {
+    String uname;
+    String ucity;
+    int tot_stud;
+
+    // Method to initialize University instance variables
+    void getUni() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter University name: ");
+        uname = scanner.nextLine();
+        System.out.print("Enter University city: ");
+        ucity = scanner.nextLine();
+        System.out.print("Enter Total Students: ");
+        tot_stud = scanner.nextInt();
+    }
+}
+
+class Department extends University {
+    int deptno;
+    String deptname;
+
+    // Method to initialize Department instance variables
+    void getDept() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter Department number: ");
+        deptno = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline character
+        System.out.print("Enter Department name: ");
+        deptname = scanner.nextLine();
+    }
+
+    // Method to display all information
+    void display() {
+        System.out.println("\nUniversity Information:");
+        System.out.println("Name: " + uname);
+        System.out.println("City: " + ucity);
+        System.out.println("Total Students: " + tot_stud);
+        System.out.println("\nDepartment Information:");
+        System.out.println("Department Number: " + deptno);
+        System.out.println("Department Name: " + deptname);
+    }
+}
+
+public class UniversityDemo {
+    public static void main(String[] args) {
+        Department dept1 = new Department();
+        Department dept2 = new Department();
+
+        // Initialize University and Department information for two objects
+        System.out.println("Enter information for Department 1:");
+        dept1.getUni(); // Get University information
+        dept1.getDept(); // Get Department information
+
+        System.out.println("\nEnter information for Department 2:");
+        dept2.getUni(); // Get University information
+        dept2.getDept(); // Get Department information
+
+        // Display information for both objects
+        dept1.display();
+        dept2.display();
+    }
+}
+
+
+2)Define a class University having instance variable uname, ucity and tot_stud.
+Define parameterized constructor to initialize instance variable. Define derived
+class Department having instance variable deptno and deptname. Define
+parameterized constructor to initialize instance variable. Also define display()
+method to display all information. Create two objects and demonstrate.
+
+import java.util.Scanner;
+
+class University {
+    String uname;
+    String ucity;
+    int tot_stud;
+
+    // Parameterized constructor to initialize University instance variables
+    University(String name, String city, int totalStudents) {
+        uname = name;
+        ucity = city;
+        tot_stud = totalStudents;
+    }
+}
+
+class Department extends University {
+    int deptno;
+    String deptname;
+
+    // Parameterized constructor to initialize Department instance variables
+    Department(String name, String city, int totalStudents, int departmentNumber, String departmentName) {
+        super(name, city, totalStudents); // Invoke the parameterized constructor of the base class
+        deptno = departmentNumber;
+        deptname = departmentName;
+    }
+
+    // Method to display all information
+    void display() {
+        System.out.println("\nUniversity Information:");
+        System.out.println("Name: " + uname);
+        System.out.println("City: " + ucity);
+        System.out.println("Total Students: " + tot_stud);
+        System.out.println("\nDepartment Information:");
+        System.out.println("Department Number: " + deptno);
+        System.out.println("Department Name: " + deptname);
+    }
+}
+
+public class UniversityDemo {
+    public static void main(String[] args) {
+        // Create two objects using parameterized constructors
+        Department dept1 = new Department("University1", "City1", 1000, 101, "Computer Science");
+        Department dept2 = new Department("University2", "City2", 800, 201, "Electrical Engineering");
+
+        // Display information for both objects
+        dept1.display();
+        dept2.display();
+    }
+}
+
+3)WAP to perform mathematical operation create a class called AddSub with attributes
+num1 and num2 of type int, also define methods calAdd( ) and calSub( ) to calculate
+addition and subtraction .Create another class MulDiv that extends AddSub class to
+use member a data of super class. MulDiv should have methods calMul( ) &amp; calDiv( )
+to calculate multiplication and division. A main method should access the methods
+and perform operations.
+
+class AddSub {
+    int num1;
+    int num2;
+
+    // Parameterized constructor
+    AddSub(int num1, int num2) {
+        this.num1 = num1;
+        this.num2 = num2;
+    }
+
+    // Method to calculate addition
+    int calAdd() {
+        return num1 + num2;
+    }
+
+    // Method to calculate subtraction
+    int calSub() {
+        return num1 - num2;
+    }
+}
+
+class MulDiv extends AddSub {
+    // Constructor calling super class constructor
+    MulDiv(int num1, int num2) {
+        super(num1, num2);
+    }
+
+    // Method to calculate multiplication
+    int calMul() {
+        return num1 * num2;
+    }
+
+    // Method to calculate division
+    float calDiv() {
+        if (num2 != 0) {
+            return (float) num1 / num2;
+        } else {
+            System.out.println("Cannot divide by zero.");
+            return Float.NaN; // Returning NaN for an undefined result
+        }
+    }
+}
+
+public class MathOperationsDemo {
+    public static void main(String[] args) {
+        // Create an object of MulDiv class
+        MulDiv obj = new MulDiv(10, 5);
+
+        // Perform mathematical operations
+        int additionResult = obj.calAdd();
+        int subtractionResult = obj.calSub();
+        int multiplicationResult = obj.calMul();
+        float divisionResult = obj.calDiv();
+
+        // Display the results
+        System.out.println("Addition: " + additionResult);
+        System.out.println("Subtraction: " + subtractionResult);
+        System.out.println("Multiplication: " + multiplicationResult);
+        System.out.println("Division: " + divisionResult);
+    }
+}
+
+
+4) Create a Shape class as the abstract class with abstract method draw( ), its
+implementation is provided by the Rectangle &amp; Circle classes. Create a reference of
+Shape class and if you create the instance of Rectangle class, draw() method of
+Rectangle class will be invoked. And same for Circle class. (Dynamic Method
+Dispatch)
+
+// Abstract class Shape
+abstract class Shape {
+    // Abstract method draw
+    abstract void draw();
+}
+
+// Rectangle class extending Shape
+class Rectangle extends Shape {
+    // Implementation of draw method for Rectangle
+    @Override
+    void draw() {
+        System.out.println("Drawing a Rectangle");
+    }
+}
+
+// Circle class extending Shape
+class Circle extends Shape {
+    // Implementation of draw method for Circle
+    @Override
+    void draw() {
+        System.out.println("Drawing a Circle");
+    }
+}
+
+public class ShapeDemo {
+    public static void main(String[] args) {
+        // Create a reference of Shape class
+        Shape shape;
+
+        // Create an instance of Rectangle
+        shape = new Rectangle();
+        // Invoke draw method (Dynamic Method Dispatch)
+        shape.draw();
+
+        // Create an instance of Circle
+        shape = new Circle();
+        // Invoke draw method (Dynamic Method Dispatch)
+        shape.draw();
+    }
+}
+
+5)Create two interfaces Printable and Showable having methods print( ) and show( )
+respectively. Create a Test_Multiple class which implements all 2 interfaces and
+override print( ) and show( ) methods. Write a main method in this class and create an
+object of this class and use the methods.
+
+// Interface Printable
+interface Printable {
+    void print();
+}
+
+// Interface Showable
+interface Showable {
+    void show();
+}
+
+// Class Test_Multiple implementing Printable and Showable interfaces
+class Test_Multiple implements Printable, Showable {
+    // Implementation of print method from Printable interface
+    @Override
+    public void print() {
+        System.out.println("Printing...");
+    }
+
+    // Implementation of show method from Showable interface
+    @Override
+    public void show() {
+        System.out.println("Showing...");
+    }
+}
+
+public class MultipleInterfaceDemo {
+    public static void main(String[] args) {
+        // Create an object of Test_Multiple class
+        Test_Multiple obj = new Test_Multiple();
+
+        // Use the methods from both interfaces
+        obj.print();
+        obj.show();
+    }
+}
+
+6)Write a program that finds the length of the string “Java Programming”. And also
+display a sub-string formed by the last five characters of the string. ( use String class)
+
+public class StringManipulation {
+    public static void main(String[] args) {
+        // The given string
+        String originalString = "Java Programming";
+
+        // Find the length of the string
+        int lengthOfString = originalString.length();
+
+        // Display the length of the string
+        System.out.println("Length of the string: " + lengthOfString);
+
+        // Display a substring formed by the last five characters of the string
+        if (lengthOfString >= 5) {
+            String lastFiveCharacters = originalString.substring(lengthOfString - 5);
+            System.out.println("Last five characters: " + lastFiveCharacters);
+        } else {
+            System.out.println("The string is too short to extract the last five characters.");
+        }
+    }
+}
+
+7)Create a package MathPack having class MathDemo with method add() and sub() to
+find addition and subtraction. Create another program and `import package and
+invoke methods.
+
+// File: MathDemo.java
+package MathPack;
+
+public class MathDemo {
+    // Method to find addition
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    // Method to find subtraction
+    public static int sub(int a, int b) {
+        return a - b;
+    }
+}
+
+// File: MainProgram.java
+import MathPack.MathDemo;
+
+public class MainProgram {
+    public static void main(String[] args) {
+        // Use methods from the MathPack package
+        int resultAddition = MathDemo.add(10, 5);
+        int resultSubtraction = MathDemo.sub(10, 5);
+
+        // Display results
+        System.out.println("Result of Addition: " + resultAddition);
+        System.out.println("Result of Subtraction: " + resultSubtraction);
+    }
+}
+
+8)Write a program to do the following using in-built methods in the string class of java.
+a. Find the 3rd character in the string &quot;Atmiya University&quot;
+b. Find the index of character ‘o’ in string &quot;Java Programming&quot;.
+c. Convert the string &quot;Enjoy Holiday&quot; to uppercase.
+d. Replace character &#39;H&#39; with &#39;n&#39; in the string &quot;Hello… Hi..”.
+
+public class StringOperations {
+    public static void main(String[] args) {
+        // a. Find the 3rd character in the string "Atmiya University"
+        String str1 = "Atmiya University";
+        char thirdChar = str1.charAt(2);
+        System.out.println("a. 3rd character in the string: " + thirdChar);
+
+        // b. Find the index of character 'o' in string "Java Programming"
+        String str2 = "Java Programming";
+        int indexOfO = str2.indexOf('o');
+        System.out.println("b. Index of character 'o': " + indexOfO);
+
+        // c. Convert the string "Enjoy Holiday" to uppercase
+        String str3 = "Enjoy Holiday";
+        String upperCaseStr = str3.toUpperCase();
+        System.out.println("c. Uppercase string: " + upperCaseStr);
+
+        // d. Replace character 'H' with 'n' in the string "Hello... Hi.."
+        String str4 = "Hello... Hi..";
+        String replacedStr = str4.replace('H', 'n');
+        System.out.println("d. String after replacement: " + replacedStr);
+    }
+}
+
+				Extra (Optional)
+9)Declare a class called author having author_name as private data member. Extend
+author class to have two sub classes called book_publication &amp; paper_publication.
+Each of these classes have private member called title. Show usage of dynamic
+method dispatch (dynamic polymorphism) to display book or paper publications of a
+given author. Use command line arguments for inputting data.
+
+class Author {
+    private String author_name;
+
+    public Author(String author_name) {
+        this.author_name = author_name;
+    }
+
+    public void displayPublication() {
+        System.out.println("Author: " + author_name);
+    }
+}
+
+class BookPublication extends Author {
+    private String title;
+
+    public BookPublication(String author_name, String title) {
+        super(author_name);
+        this.title = title;
+    }
+
+    @Override
+    public void displayPublication() {
+        super.displayPublication();
+        System.out.println("Book Title: " + title);
+    }
+}
+
+class PaperPublication extends Author {
+    private String title;
+
+    public PaperPublication(String author_name, String title) {
+        super(author_name);
+        this.title = title;
+    }
+
+    @Override
+    public void displayPublication() {
+        super.displayPublication();
+        System.out.println("Paper Title: " + title);
+    }
+}
+
+public class PublicationDemo {
+    public static void main(String[] args) {
+        if (args.length != 3) {
+            System.out.println("Usage: java PublicationDemo <author_name> <publication_type> <title>");
+            System.exit(1);
+        }
+
+        String author_name = args[0];
+        String publication_type = args[1];
+        String title = args[2];
+
+        Author publication;
+
+        if (publication_type.equalsIgnoreCase("book")) {
+            publication = new BookPublication(author_name, title);
+        } else if (publication_type.equalsIgnoreCase("paper")) {
+            publication = new PaperPublication(author_name, title);
+        } else {
+            System.out.println("Invalid publication type. Please choose 'book' or 'paper'.");
+            return;
+        }
+
+        // Dynamic method dispatch
+        publication.displayPublication();
+    }
+}
+
+10)Declare a class called book having author_name as private data member. Extend book
+class to have two sub classes called book_publication &amp; paper_publication. Each of
+these classes have private member called title. Write a complete program to show
+usage of dynamic method dispatch (dynamic polymorphism) to display book or paper
+publications of given author. Use command line arguments for inputting data.
+
+class Book {
+    private String author_name;
+
+    public Book(String author_name) {
+        this.author_name = author_name;
+    }
+
+    public void displayPublication() {
+        System.out.println("Author: " + author_name);
+    }
+}
+
+class BookPublication extends Book {
+    private String title;
+
+    public BookPublication(String author_name, String title) {
+        super(author_name);
+        this.title = title;
+    }
+
+    @Override
+    public void displayPublication() {
+        super.displayPublication();
+        System.out.println("Book Title: " + title);
+    }
+}
+
+class PaperPublication extends Book {
+    private String title;
+
+    public PaperPublication(String author_name, String title) {
+        super(author_name);
+        this.title = title;
+    }
+
+    @Override
+    public void displayPublication() {
+        super.displayPublication();
+        System.out.println("Paper Title: " + title);
+    }
+}
+
+public class PublicationDemo {
+    public static void main(String[] args) {
+        if (args.length != 3) {
+            System.out.println("Usage: java PublicationDemo <author_name> <publication_type> <title>");
+            System.exit(1);
+        }
+
+        String author_name = args[0];
+        String publication_type = args[1];
+        String title = args[2];
+
+        Book publication;
+
+        if (publication_type.equalsIgnoreCase("book")) {
+            publication = new BookPublication(author_name, title);
+        } else if (publication_type.equalsIgnoreCase("paper")) {
+            publication = new PaperPublication(author_name, title);
+        } else {
+            System.out.println("Invalid publication type. Please choose 'book' or 'paper'.");
+            return;
+        }
+
+        // Dynamic method dispatch
+        publication.displayPublication();
+    }
+}
+
+11)The abstract Vegetable class has three subclasses named Potato, Brinjal and Tomato.
+Write an application that demonstrates how to establish this class hierarchy. Declare
+one instance variable of type String that indicates the color of a vegetable. Create and
+display instances of these objects. Override the toString() method of Object to return a
+string with the name of the vegetable and its color.
+
+// Abstract class Vegetable
+abstract class Vegetable {
+    private String color;
+
+    public Vegetable(String color) {
+        this.color = color;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    // Abstract method to be implemented by subclasses
+    public abstract String getName();
+
+    // Override toString method to display name and color
+    @Override
+    public String toString() {
+        return getName() + " (Color: " + color + ")";
+    }
+}
+
+// Subclass Potato
+class Potato extends Vegetable {
+    public Potato(String color) {
+        super(color);
+    }
+
+    @Override
+    public String getName() {
+        return "Potato";
+    }
+}
+
+// Subclass Brinjal
+class Brinjal extends Vegetable {
+    public Brinjal(String color) {
+        super(color);
+    }
+
+    @Override
+    public String getName() {
+        return "Brinjal";
+    }
+}
+
+// Subclass Tomato
+class Tomato extends Vegetable {
+    public Tomato(String color) {
+        super(color);
+    }
+
+    @Override
+    public String getName() {
+        return "Tomato";
+    }
+}
+
+public class VegetableDemo {
+    public static void main(String[] args) {
+        // Create instances of Vegetable subclasses
+        Potato potato = new Potato("Brown");
+        Brinjal brinjal = new Brinjal("Purple");
+        Tomato tomato = new Tomato("Red");
+
+        // Display instances using overridden toString method
+        System.out.println("Potato: " + potato);
+        System.out.println("Brinjal: " + brinjal);
+        System.out.println("Tomato: " + tomato);
+    }
+}
+
+
+12)Define class Human with first name and last name. Define new class Student which is
+derived from Human and has new field – grade. Define class Worker derived from
+Human with new field weekSalary and work-hours per day and method
+MoneyPerHour() that returns money earned by hour by the worker. Define the proper
+constructors and properties for this hierarchy. Create object and demonstrate.
+
+class Human {
+    private String firstName;
+    private String lastName;
+
+    public Human(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+}
+
+class Student extends Human {
+    private int grade;
+
+    public Student(String firstName, String lastName, int grade) {
+        super(firstName, lastName);
+        this.grade = grade;
+    }
+
+    public int getGrade() {
+        return grade;
+    }
+}
+
+class Worker extends Human {
+    private double weekSalary;
+    private int workHoursPerDay;
+
+    public Worker(String firstName, String lastName, double weekSalary, int workHoursPerDay) {
+        super(firstName, lastName);
+        this.weekSalary = weekSalary;
+        this.workHoursPerDay = workHoursPerDay;
+    }
+
+    public double moneyPerHour() {
+        // Assuming a standard 5-day workweek
+        int workDaysPerWeek = 5;
+        return weekSalary / (workDaysPerWeek * workHoursPerDay);
+    }
+}
+
+public class HumanDemo {
+    public static void main(String[] args) {
+        // Create instances of Human, Student, and Worker
+        Human human = new Human("John", "Doe");
+        Student student = new Student("Alice", "Smith", 10);
+        Worker worker = new Worker("Bob", "Johnson", 500, 8);
+
+        // Display information
+        System.out.println("Human: " + human.getFirstName() + " " + human.getLastName());
+        System.out.println("Student: " + student.getFirstName() + " " + student.getLastName() + ", Grade: " + student.getGrade());
+        System.out.println("Worker: " + worker.getFirstName() + " " + worker.getLastName() + ", Money per Hour: $" + worker.moneyPerHour());
+    }
+}

@@ -1,0 +1,270 @@
+1) Write a program that displays your name in double quote in command prompt.
+public class DisplayName 
+{
+    public static void main(String[] args) 
+    {
+        // Your name
+        String name = "ChatGPT";
+
+        // Display the name in double quotes
+        System.out.println("\"" + name + "\"");
+    }
+}
+
+2) Write a program that displays your name in double quote in command prompt.
+public class DisplayName 
+{
+    public static void main(String[] args) 
+    {
+        // Your name
+        String name = "ChatGPT";
+
+        // Display the name in double quotes
+        System.out.println("\"" + name + "\"");
+    }
+}
+
+3) Write program to input length and width and calculate the area of the rectangle.
+
+import java.util.Scanner;
+
+public class RectangleArea 
+{
+    public static void main(String[] args) 
+    {
+        // Create a Scanner object to take user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Input length from the user
+        System.out.print("Enter the length of the rectangle: ");
+        double length = scanner.nextDouble();
+
+        // Input width from the user
+        System.out.print("Enter the width of the rectangle: ");
+        double width = scanner.nextDouble();
+
+        // Calculate the area
+        double area = length * width;
+
+        // Display the area
+        System.out.println("The area of the rectangle is: " + area);
+
+        // Close the scanner to prevent resource leak
+        scanner.close();
+    }
+}
+
+4) Input three numbers and find minimum among them.
+import java.util.Scanner;
+
+public class FindMinimum {
+    public static void main(String[] args) {
+        // Create a Scanner object to take user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Input three numbers from the user
+        System.out.print("Enter the first number: ");
+        double num1 = scanner.nextDouble();
+
+        System.out.print("Enter the second number: ");
+        double num2 = scanner.nextDouble();
+
+        System.out.print("Enter the third number: ");
+        double num3 = scanner.nextDouble();
+
+        // Find the minimum among the three numbers
+        double minimum = Math.min(Math.min(num1, num2), num3);
+
+        // Display the minimum
+        System.out.println("The minimum among the three numbers is: " + minimum);
+
+        // Close the scanner to prevent resource leak
+        scanner.close();
+    }
+}
+
+5)Write a program that take initial values of students Roll Number, Name, and total
+marks secured in 5 subjects print his/her result as follows:
+a. If percentage &gt;= 70 then result = “Distinction”
+b. If percentage &gt;= 60 and &lt; 70 then result = “First Class”
+c. If percentage &gt;= 50 and &lt; 60 then result = “Second Class”
+d. If percentage &gt;= 40 and &lt; 50 then result = “Pass Class”
+e. Else result = “Fail”.
+
+import java.util.Scanner;
+
+public class StudentResult 
+{
+    public static void main(String[] args) 
+    {
+        // Create a Scanner object to take user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Input student details
+        System.out.print("Enter Roll Number: ");
+        int rollNumber = scanner.nextInt();
+
+        System.out.print("Enter Name: ");
+        String name = scanner.next();
+
+        System.out.print("Enter total marks secured in 5 subjects: ");
+        double totalMarks = scanner.nextDouble();
+
+        // Calculate percentage
+        double percentage = (totalMarks / (5 * 100)) * 100;
+
+        // Determine the result based on the percentage
+        String result;
+        if (percentage >= 70) {
+            result = "Distinction";
+        } else if (percentage >= 60) {
+            result = "First Class";
+        } else if (percentage >= 50) {
+            result = "Second Class";
+        } else if (percentage >= 40) {
+            result = "Pass Class";
+        } else {
+            result = "Fail";
+        }
+
+        // Display the result
+        System.out.println("\nStudent Result:");
+        System.out.println("Roll Number: " + rollNumber);
+        System.out.println("Name: " + name);
+        System.out.println("Percentage: " + percentage + "%");
+        System.out.println("Result: " + result);
+
+        // Close the scanner to prevent resource leak
+        scanner.close();
+    }
+}
+
+6)Write a Java program which accepts any number from command prompt and displays
+the table of multiplication from 1 to 10 of that number.
+Input : 5
+Output : 5*1 = 5
+5*2 = 10 and onwards up to 10.
+
+public class MultiplicationTable 
+{
+    public static void main(String[] args) 
+    {
+        // Check if a number is provided as a command-line argument
+        if (args.length == 0) {
+            System.out.println("Please provide a number as a command-line argument.");
+            return;
+        }
+
+        // Convert the command-line argument to an integer
+        int number = Integer.parseInt(args[0]);
+
+        // Display the multiplication table for the given number
+        System.out.println("Multiplication Table for " + number + ":");
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(number + " * " + i + " = " + (number * i));
+        }
+    }
+}
+
+7)Write a menu driven program which has following operations:
+a. Factorial.
+b. Number is Even or Odd.
+c. Exit.
+
+import java.util.Scanner;
+
+public class MenuDrivenProgram 
+{
+    public static void main(String[] args) 
+    {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("Menu:");
+            System.out.println("1. Factorial");
+            System.out.println("2. Check if Number is Even or Odd");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice (1, 2, or 3): ");
+
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    // Factorial operation
+                    System.out.print("Enter a number to find its factorial: ");
+                    int num = scanner.nextInt();
+                    long factorial = calculateFactorial(num);
+                    System.out.println("Factorial of " + num + " is: " + factorial);
+                    break;
+
+                case 2:
+                    // Check if Number is Even or Odd
+                    System.out.print("Enter a number to check if it's even or odd: ");
+                    int inputNumber = scanner.nextInt();
+                    String result = isEvenOrOdd(inputNumber);
+                    System.out.println("The number is " + result);
+                    break;
+
+                case 3:
+                    System.out.println("Exiting the program. Goodbye!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+            }
+
+            System.out.println(); // Add a new line for better readability
+
+        } while (choice != 3);
+
+        // Close the scanner to prevent resource leak
+        scanner.close();
+    }
+
+    // Function to calculate factorial of a number
+    private static long calculateFactorial(int num) {
+        if (num == 0 || num == 1) {
+            return 1;
+        } else {
+            return num * calculateFactorial(num - 1);
+        }
+    }
+
+    // Function to check if a number is even or odd
+    private static String isEvenOrOdd(int number) {
+        return (number % 2 == 0) ? "even" : "odd";
+    }
+}
+
+8)Write a Java program to do arithmetic operation on two numbers. Input numbers as
+command line argument.
+
+public class ArithmeticOperations 
+{
+    public static void main(String[] args) 
+{
+        // Check if two numbers are provided as command-line arguments
+        if (args.length != 2) {
+            System.out.println("Please provide two numbers as command-line arguments.");
+            return;
+        }
+
+        // Convert command-line arguments to double
+        double num1 = Double.parseDouble(args[0]);
+        double num2 = Double.parseDouble(args[1]);
+
+        // Perform arithmetic operations
+        double sum = num1 + num2;
+        double difference = num1 - num2;
+        double product = num1 * num2;
+        double quotient = num1 / num2;
+
+        // Display the results
+        System.out.println("Arithmetic Operations:");
+        System.out.println(num1 + " + " + num2 + " = " + sum);
+        System.out.println(num1 + " - " + num2 + " = " + difference);
+        System.out.println(num1 + " * " + num2 + " = " + product);
+        System.out.println(num1 + " / " + num2 + " = " + quotient);
+    }
+}
